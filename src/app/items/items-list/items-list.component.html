@@ -1,0 +1,17 @@
+
+
+
+<table id="example2" class="table table-bordered table-hover" *ngIf="items$ | async as items">
+  <thead>
+  <tr>
+    <th>Nombre</th>
+    <th>Descripcion</th>
+    <th>Editar</th>
+    <th>Eliminar</th>
+  </tr>
+  </thead>
+  <tbody>
+    <app-items-list-item *ngFor="let item of items" [item]="item"></app-items-list-item>   
+  </tbody>
+  
+</table>

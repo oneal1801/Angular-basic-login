@@ -1,0 +1,49 @@
+<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+  <div class="container">
+    <div class="card login-card">
+      <div class="row no-gutters">
+        <div class="col-md-5">
+          <img src="assets/image/seguro.jpg" alt="login" class="login-card-img">
+        </div>
+        <div class="col-md-7">
+          <div class="card-body">
+            <div class="brand-wrapper">
+              <img src="assets/image/logo.svg" alt="logo" class="logo">
+            </div>
+            <p class="login-card-description">Ingresa a tu cuenta</p>
+            <form class="form-signin" [formGroup]="loginForm">
+
+              <div class="form-group">
+                <label for="inputEmail" class="sr-only" [ngClass]="{'required': checkField(loginForm.get('username')) }"> Nombre de Usuario *</label>
+                <input type="email" [ngClass]="{'required': checkField(loginForm.get('username')) }" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Ingresa un email" formControlName="username">
+              </div>
+  
+              <div class="form-group">
+                  <label for="inputPassword" class="sr-only" [ngClass]="{'required': checkField(loginForm.get('password')) }">Password *</label>
+                  <input type="password" class="form-control" [ngClass]="{'required': checkField(loginForm.get('password')) }" id="inputPassword" aria-describedby="passwordHelp" placeholder="Ingresa una password" formControlName="password">
+              </div>
+  
+              <p class="alert alert-danger" role="alert" *ngIf="error">
+                <strong>There was an error!</strong><br>Please check your username/password and try again.
+              </p>
+  
+              
+              <button id="submitButton" [disabled]="!loginForm.valid || processing" class="btn btn-block login-btn mb-4" (click)="onSubmitButtonClicked()">
+                <span *ngIf="processing" class="spinner-border spinner-border-sm mr-1"></span>
+                {{ processing ? 'Validando...' : 'Iniciar sesión' }}
+               </button>
+               <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+  
+            </form>
+              <hr>
+              <nav class="login-card-footer-nav">
+                <a>Todos los derechos reservados, Copyright &copy;  </a>
+                <a href="https://ticvelopers.com/">TicVelopers</a>
+              </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
