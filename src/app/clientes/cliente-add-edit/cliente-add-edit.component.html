@@ -1,0 +1,85 @@
+<!-- <form  [formGroup]="clienteForm">
+
+  <div class="form-group">
+    <label for="inputNombre" [ngClass]="{'required': checkField(clienteForm.get('nombre')) }">Nombre *</label>
+    <input type="text" class="form-control" id="inputNombre" placeholder="Nombre" formControlName="title"  [ngClass]="{'required': checkField(clienteForm.get('nombre')) }">
+  </div>
+
+  <div class="form-group">
+    <label for="inputEntidad" [ngClass]="{'required': checkField(clienteForm.get('tipo_IdEntidad')) }">Entidad *</label>
+    <input type="text" class="form-control" id="inputEntidad" placeholder="Entidad" formControlName="title"  [ngClass]="{'required': checkField(clienteForm.get('tipo_IdEntidad')) }">
+  </div>
+
+ 
+
+  <div class="form-group">
+      <label for="inputFechaNacimiento">Fecha Nacimiento</label>
+      <input type="text" class="form-control" id="inputFechaNacimiento" placeholder="Fecha Nacimiento" formControlName="fechaNacimiento" [ngClass]="{'required': checkField(clienteForm.get('fechaNacimiento')) }">
+  </div>
+  <div class="form-group">
+    <label for="inputfechaIngreso">Fecha Ingreso</label>
+    <input type="text" class="form-control" id="inputfechaIngreso" placeholder="Fecha Nacimiento" formControlName="fechaIngreso" [ngClass]="{'required': checkField(clienteForm.get('fechaIngreso')) }">
+  </div>
+  <div class="form-group">
+    <label for="inputDescription">Estatus</label>
+    <input type="text" class="form-control" id="inputFechaNacimiento" placeholder="Fecha Nacimiento" formControlName="fechaNacimiento" [ngClass]="{'required': checkField(clienteForm.get('fechaNacimiento')) }">
+  </div>
+
+
+  <p class="alert alert-warning" role="alert"  *ngIf="isProcessing">
+    <span *ngIf="isProcessing" class="spinner-border spinner-border-sm mr-1"></span> Por favor espere..
+  </p>
+
+  <button *ngIf="!isProcessing" type="button" class="btn btn-primary btn-block submitbutton" (click)="onSubmit($event)" [disabled]="!clienteForm.valid && !isProcessing">{{getButtonText()}}</button>
+</form> -->
+
+<div class="submit-form">
+  <div *ngIf="!submitted">
+    <div class="form-group">
+      <label for="name">Nombre Completo</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        required
+        [(ngModel)]="cliente.nombre"
+        name="nombre"
+      />
+    </div>
+    
+
+    <div class="form-group">
+      <label for="identidad">Identidad</label>
+      <input
+        class="form-control"
+        id="identidad"
+        required
+        [(ngModel)]="cliente.identidad"
+        name="identidad"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="DDIdentity">Category Dropdown</label>
+      <!-- DropDownList -->
+      <select class="custom-select" name="DDIdentity" [(ngModel)]="ddlIdentityList" #DDIdentity="ngModel" 
+      [ngClass]="{ 'is-invalid': form.submitted && DDIdentity.invalid }" required>
+        <option value="" class="text-primary font-weight-bolder">
+          --- Select tipo de Identidad ---
+        </option>
+        <option *ngFor="let Identidad of typesIdentity" [value]="tipo_Identidad.id">
+          {{tipo_Identidad.descripcion}}
+        </option>
+      </select>
+      
+    
+    </div>
+
+    <button (click)="createProduct()" class="btn btn-success">Create</button>
+  </div>
+
+  <div *ngIf="submitted">
+    <h3>You successfully created a product!</h3>
+    <button class="btn btn-success" (click)="newProduct()">New..</button>
+  </div>
+</div>

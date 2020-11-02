@@ -64,6 +64,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return of(new HttpResponse({ status: 200, body: body }));
             }
 
+            
+
             // Add item
             if (request.url.endsWith(environment['apiBaseUrl'] + '/api/item') && request.method === 'POST') {
 
@@ -96,6 +98,73 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
             // Delete item
             if (request.url.startsWith(environment['apiBaseUrl'] + '/api/item/') && request.method === 'DELETE') {
+                console.log('[ intercepting ] ' + request.method + ' : ' + request.url + ' ' + auth);
+                const body = {
+                    success : true
+                };
+                return of(new HttpResponse({ status: 200, body: body }));
+            }
+
+            //Lista de clientes
+            if (request.url.endsWith(environment['apiBaseUrl'] + '/api/clientes') && request.method === 'GET') {
+
+                console.log('[ intercepting ] ' + request.method + ' : ' + request.url + ' ' + auth);
+
+                const body = {
+                    result : [
+                        {
+                            nombre : 'Oneal Marte',
+                            tipo_IdEntidad : 1,
+                            fecha_Nacimiento: new Date(),
+                            fecha_ingreso: new Date(),
+                            estatus: 'A',
+                            id : 1
+                        },
+                        {
+                            nombre : 'Steven Checo',
+                            tipo_IdEntidad : 1,
+                            fecha_Nacimiento: new Date(),
+                            fecha_ingreso: new Date(),
+                            estatus: 'A',
+                            id : 2
+                        },
+                    ]
+                };
+                return of(new HttpResponse({ status: 200, body: body }));
+            }
+
+            // Add cliente
+            if (request.url.endsWith(environment['apiBaseUrl'] + '/api/cliente') && request.method === 'POST') {
+
+                console.log('[ intercepting ] ' + request.method + ' : ' + request.url + ' ' + auth);
+
+                const bodyPosted    = request.body;
+                const random    = (Math.floor(Math.random() * Math.floor(1000)) + 1);
+                const newResult    = { ...bodyPosted , id: random};
+
+                const body = {
+                    success : bodyPosted ? true : false,
+                    result : newResult
+                };
+                return of(new HttpResponse({ status: 200, body: body }));
+            }
+
+            // Update cliente
+            if (request.url.startsWith(environment['apiBaseUrl'] + '/api/cliente') && request.method === 'PUT') {
+
+                console.log('[ intercepting ] ' + request.method + ' : ' + request.url + ' ' + auth);
+
+                const bodyPosted    = request.body;
+
+                const body = {
+                    success : bodyPosted ? true : false,
+                    result : bodyPosted
+                };
+                return of(new HttpResponse({ status: 200, body: body }));
+            }
+
+            // Delete cliente
+            if (request.url.startsWith(environment['apiBaseUrl'] + '/api/cliente/') && request.method === 'DELETE') {
                 console.log('[ intercepting ] ' + request.method + ' : ' + request.url + ' ' + auth);
                 const body = {
                     success : true

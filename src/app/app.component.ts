@@ -5,6 +5,7 @@ import { DOCUMENT } from '@angular/common';
 
 import { AuthService } from './_auth/services/auth.service';
 import { ItemsService } from './items/_services/items.service';
+import { ClientesService } from './clientes/_service/clientes.service';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private router: Router,
     @Inject(DOCUMENT) private document: any,
     private itemsService: ItemsService,
+    private clientesService: ClientesService,
   ) { }
 
   ngOnInit() {
@@ -68,10 +70,13 @@ export class AppComponent implements OnInit, OnDestroy {
     // console.log('** handleLoginSuccess **');
     this.itemsService.clear();
     this.itemsService.fetch().subscribe();
+    //this.clientesService.clear();
+    //this.clientesService.fetch().subscribe();
   }
 
   private logout() {
     this.authService.logout();
     this.itemsService.clear();
+    //this.clientesService.clear();
   }
 }

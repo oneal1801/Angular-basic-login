@@ -19,8 +19,13 @@ import { LogoutComponent } from './logout/logout.component';
 import { ItemsModule } from './items/items.module';
 
 import { ItemsService } from './items/_services/items.service';
+
+import { ClientesModule } from './clientes/clientes.module';
+import {ClientesService } from './clientes/_service/clientes.service';
+
 import { AuthService } from './_auth/services/auth.service';
 import { ContentHeaderComponent } from './ContentHeader/ContentHeader.component';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [	
@@ -38,7 +43,9 @@ import { ContentHeaderComponent } from './ContentHeader/ContentHeader.component'
     routingModule,
     ReactiveFormsModule,
     FormsModule,
-    ItemsModule
+    ItemsModule,
+    ClientesModule,
+    DataTablesModule,
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/'},
@@ -54,7 +61,8 @@ import { ContentHeaderComponent } from './ContentHeader/ContentHeader.component'
       multi: true
     },
     AuthService,
-    ItemsService
+    ItemsService,
+    ClientesService
   ],
   bootstrap: [AppComponent]
 })

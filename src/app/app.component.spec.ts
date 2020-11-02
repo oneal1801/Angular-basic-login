@@ -1,4 +1,5 @@
 import { ItemsComponent } from './items/items.component';
+import { ClientesComponent} from './clientes/clientes.component'
 
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';

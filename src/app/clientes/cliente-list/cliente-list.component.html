@@ -1,0 +1,25 @@
+
+  <table class="table table-bordered table-hover" *ngIf="clientes$ | async as clientes">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nombre Completo</th>
+            <th>Entidad</th>
+            <th>Estatus</th>
+            <th>Accion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cliente of clientes">
+            <th>{{ item.id }}</th>
+            <td>{{ item.nombre }}</td>
+            <td>{{ item.tipoEntidad }}</td>
+            <td>{{ item.estatus }}</td>
+            <td>
+                <button type="button" >Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+  
