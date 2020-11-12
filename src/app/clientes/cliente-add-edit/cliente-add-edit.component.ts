@@ -27,6 +27,7 @@ export class ClienteAddEditComponent implements OnInit {
   public processing: Boolean = false;
   public Editing: boolean;
   public selectTypesIdentity = new FormControl('', [Validators.required]);
+  public selectedProvincia = new FormControl
   public clienteTypesIdentity;
   public typesentity;
   public provincias;
@@ -38,9 +39,7 @@ export class ClienteAddEditComponent implements OnInit {
    
     this.getTypesIdentity();
     this.getProvincias();
-    this.getMunicipios();
     this.getTypesEntity();
-    this.getSectores();
     
 
   }
