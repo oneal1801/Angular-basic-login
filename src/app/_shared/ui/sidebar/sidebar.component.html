@@ -1,10 +1,10 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-light-navy elevation-4">
   <!-- Brand Logo -->
   <a href="javascript:void(0)" routerLink="/dashboard" class="brand-link">
-    <img src="assets/image/DominusLogo.png" alt="Dominus Logo" class="brand-image img-circle elevation-3"
+    <img src="assets/image/logoDominus.png" alt="Dominus Logo" class="brand-image img-circle elevation-3"
          style="opacity: .8">
-    <span class="brand-text font-weight-light">Dominus Systems</span>
+    <span class="brand-text font-weight-light">Dominus Suite</span>
   </a>
 
   <!-- Sidebar -->
@@ -15,7 +15,7 @@
         <img src="assets/image/avatar5.png" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" routerLink="/dashboard" class="d-block">Oneal Marte</a>
+        <a href="#" routerLink="/dashboard" class="d-block">{{name}}</a>
         
       </div>
     </div>
@@ -25,8 +25,8 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-        <li class="nav-item has-treeview menu-open">
-          <a href="#" class="nav-link active">
+        <li class="nav-item has-treeview">
+          <a href="" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Panel Principal
@@ -45,8 +45,8 @@
         </li>
       
         
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+        <li class="nav-item has-treeview menu-open">
+          <a href="" class="nav-link active">
             <i class="nav-icon fas fa-edit"></i>
             <p>
               Registros
@@ -55,13 +55,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="" class="nav-link">
                 <i class="far fa-building nav-icon"></i>
                 <p>Aseguradoras</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="javascript:void(0)" routerLink="/clientes" class="nav-link">
+              <a href="javascript:void(0)" routerLink="/clientes" class="nav-link active">
                 <i class="fas fa-users nav-icon"></i>
                 <p>Clientes</p>
               </a>
@@ -70,7 +70,7 @@
           </ul>
         </li>
         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+          <a href="" class="nav-link">
             <i class="nav-icon fa fa-exclamation-circle"></i>
             <p>
               Riesgos Generales
@@ -79,25 +79,25 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/forms/general.html" class="nav-link">
+              <a href="" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Cotizaciones</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/forms/general.html" class="nav-link">
+              <a href="" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Vehículos</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/forms/general.html" class="nav-link">
+              <a href="" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Incendios</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Otros Ramos</p>
               </a>
@@ -106,7 +106,7 @@
           </ul>
         </li>
         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+          <a href="" class="nav-link">
             <i class="nav-icon fas fa-people-carry"></i>
             <p>
               Seguros de Personas
@@ -115,13 +115,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Salud</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Vida</p>
               </a>
@@ -130,7 +130,7 @@
           </ul>
         </li>
         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+          <a href="" class="nav-link">
             <i class="nav-icon fas fa-file"></i>
             <p>
               Documentos
@@ -139,19 +139,19 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Facturas</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Creditos</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Endosos y Movimientos</p>
               </a>
@@ -163,7 +163,7 @@
         
      
         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+          <a href="" class="nav-link">
             <i class="nav-icon fas fa-chart-line"></i>
             <p>
               Reportes
@@ -172,7 +172,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Pólizas a Renovar</p>
               </a>
@@ -181,7 +181,7 @@
           </ul>
         </li>
         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+          <a href="" class="nav-link">
             <i class="nav-icon fas fa-cogs"></i>
             <p>
               Administración
@@ -190,32 +190,32 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Datos de la Empresa</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Empleados</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Usuarios</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Perfiles</p>
               </a>
             </li>
             
             <li class="nav-item">
-              <a href="pages/examples/project_edit.html" class="nav-link">
+              <a href="" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Vendedores</p>
               </a>

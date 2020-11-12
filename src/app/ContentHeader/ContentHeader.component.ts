@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentHeaderComponent implements OnInit {
 
+  
+
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

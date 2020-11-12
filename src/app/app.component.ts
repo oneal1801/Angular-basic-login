@@ -16,6 +16,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   loggedIn$: BehaviorSubject<boolean>;
   private isLoggedIn_subscription: Subscription;
+  
+
+
 
   constructor(
     private authService: AuthService,
@@ -26,6 +29,8 @@ export class AppComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+
+    
 
     this.loggedIn$  =  this.authService.isLoggedIn;
 

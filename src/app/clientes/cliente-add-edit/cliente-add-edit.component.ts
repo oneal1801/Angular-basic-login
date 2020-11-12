@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { CustomerModel } from 'src/app/Models/Clients';
 import { CheckRequiredField } from 'src/app/_shared/helpers/form.helper';
-import { ClienteModel } from '../_models/cliente.model';
+import Swal from 'sweetalert2';
+
 import { ClientesService } from '../_service/clientes.service';
 
 @Component({
@@ -12,132 +14,157 @@ import { ClientesService } from '../_service/clientes.service';
 })
 export class ClienteAddEditComponent implements OnInit {
 
-  @Input() cliente: ClienteModel;
-  @Output() formSubmitEvent = new EventEmitter<string>();
-
-  clienteForm: FormGroup;
-
-  isProcessing: Boolean = false;
-  submitted: Boolean = false;
-
-
-  checkField  = CheckRequiredField;
-
-  //Dropdowns
-  typesIdentity: {};
-  typesEntity: {};
-  provincias:{};
-  municipios:{};
-  sectores: {};
+  datepickerModel: Date;
+  
 
   constructor(private clientesService: ClientesService, private formBuilder: FormBuilder, private http:HttpClient ) 
   { 
-    this.GetTypesIdentityList();
-    this.GetTypesEntityList();
-    this.GetProvinciasList();
-    this.GetMunicipiosList();
-    this.GetSectoresList();
+    
   }
+  public data;
+  public submitted = false;
+  public Cliente;
+  public processing: Boolean = false;
+  public Editing: boolean;
+  public selectTypesIdentity = new FormControl('', [Validators.required]);
+  public clienteTypesIdentity;
+  public typesentity;
+  public provincias;
+  public municipios;
+  public sectores;
 
   ngOnInit() {
+    this.Cliente = new CustomerModel();
+   
+    this.getTypesIdentity();
+    this.getProvincias();
+    this.getMunicipios();
+    this.getTypesEntity();
+    this.getSectores();
+    
 
   }
 
-  ddlIdentityList = "";
-  onSubmit() {
-    alert('Category ID: ' + this.ddlIdentityList);
-  } 
 
-  GetTypesIdentityList(){
-    this.http.get(`https://localhost:44314/api/codes/typesidentity`).subscribe(
-      data => this.typesIdentity = data
-    );
-  }
-
-  GetTypesEntityList(){
-    this.http.get(`https://localhost:44314/api/codes/typesentity`).subscribe(
-      data => this.typesEntity = data
-    );
-  }
-
-  GetProvinciasList(){
-    this.http.get(`https://localhost:44314/api/codes/provincias`).subscribe(
-      data => this.provincias = data
-    );
-  }
-
-  GetMunicipiosList(){
-    this.http.get(`https://localhost:44314/api/codes/municipios`).subscribe(
-      data => this.municipios = data
-    );
-  }
-
-  GetSectoresList(){
-    this.http.get(`https://localhost:44314/api/codes/sectores`).subscribe(
-      data => this.sectores = data
-    );
+  getCliente(clienteId: number) {
+    this.submitted = true;
+    // console.log('Tamo aqui');
+    
+    this.clientesService.GetById(clienteId).subscribe((data: any) => {
+      this.submitted = false;
+      this.Cliente = data.Object;
+    }, error => {
+      this.submitted = false;
+      Swal.fire({
+        icon: 'error',
+        title: error.error.Title,
+        text: error.error.Message
+      });
+    });
   }
 
 
-  createProduct(): void {
-    const data = {
-      nombre: this.cliente.nombre,
-      tipo_Identidad: this.cliente.tipoEntidad,
-      identidad: this.cliente.identidad,
-      fecha_Nacimiento: this.cliente.fecha_Nacimiento,
-      fecha_ingreso: this.cliente.fecha_ingreso,
-      estatus: this.cliente.estatus,
-      tipoEntidad: this.cliente.tipoEntidad,
-      tipoContacto: this.cliente.tipoContacto,
-      calle: this.cliente.calle,
-      numero: this.cliente.numero,
-      Apto: this.cliente.Apto,
-      pais: this.cliente.pais,
-      sector: this.cliente.sector,
-      provincia: this.cliente.provincia,
-      municipio: this.cliente.municipio,
-      comentario: this.cliente.comentario,
+  getTypesIdentity() {
+    this.clientesService.GetTypesIdentity().subscribe((data: any) => {
+      console.log(data);
+      this.clienteTypesIdentity = data;
+    }, error => {
+      console.log(error.error);
 
-    };
-
-    this.clientesService.create(data)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.isProcessing = true;
-          this.submitted = true;
-        },
-        error => {
-          console.log(error);
-        });
+    });
   }
 
-  newCliente(): void {
-    this.submitted = false;
-    this.isProcessing = false;
-    this.cliente = {
-      id: 0,
-      nombre: '',
-      tipo_Identidad: 0,
-      identidad: '',
-      fecha_Nacimiento: new Date,
-      fecha_ingreso: new Date,
-      estatus: '',
-      tipoEntidad: 0,
-      tipoContacto: 0,
-      calle: '',
-      numero: '',
-      Apto: '',
-      pais: '',
-      sector: '',
-      provincia: '',
-      municipio: '',
-      comentario: ''
-    };
+  getTypesEntity() {
+    this.clientesService.GetTypesEntity().subscribe((data: any) => {
+      console.log(data);
+      this.typesentity = data;
+    }, error => {
+      console.log(error.error);
+
+    });
   }
 
+  getProvincias() {
+    this.clientesService.GetProvincias().subscribe((data: any) => {
+      console.log(data);
+      this.provincias= data;
+    }, error => {
+      console.log(error.error);
 
+    });
+  }
+
+  getMunicipios() {
+    this.clientesService.GetMunicipios().subscribe((data: any) => {
+      console.log(data);
+      this.municipios = data;
+    }, error => {
+      console.log(error.error);
+
+    });
+  }
+
+  getSectores() {
+    this.clientesService.GetSectores().subscribe((data: any) => {
+      console.log(data);
+      this.sectores = data;
+    }, error => {
+      console.log(error.error);
+
+    });
+  }
 
   
 
+  createCliente() {
+    this.processing = true;
+    this.clientesService.postCliente(this.Cliente).subscribe((data: any) => {
+      this.submitted = false;
+      Swal.fire({
+        icon: 'success',
+        title: "Registro Guardado",
+        text: "El registro fue guardado exitosamente"
+      });
+      this.processing = false;
+    }, error => {
+      this.submitted = false;
+      Swal.fire({
+        icon: 'error',
+        title: error.error.Title,
+        text: error.error.Message
+      });
+      this.processing = false;
+    });
+    
+  }
+
+  updateCliente() {
+    // console.log(this.Producto);
+    
+    this.clientesService.putCliente(this.Cliente).subscribe((data: any) => {
+      this.submitted = false;
+      Swal.fire({
+        icon: 'success',
+        title: data.Title,
+        text: data.Message
+      });
+    }, error => {
+      this.submitted = false;
+      Swal.fire({
+        icon: 'error',
+        title: error.error.Title,
+        text: error.error.Message
+      });
+    });
+  }
+  alterCliente() {
+    if (this.Editing)
+      this.updateCliente();
+    else
+      this.createCliente();
+  }
+
+  
+
+  
 }

@@ -26,6 +26,10 @@ import {ClientesService } from './clientes/_service/clientes.service';
 import { AuthService } from './_auth/services/auth.service';
 import { ContentHeaderComponent } from './ContentHeader/ContentHeader.component';
 import { DataTablesModule } from 'angular-datatables';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Globals } from './Globals';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 
 @NgModule({
   declarations: [	
@@ -46,6 +50,8 @@ import { DataTablesModule } from 'angular-datatables';
     ItemsModule,
     ClientesModule,
     DataTablesModule,
+    BsDatepickerModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/'},
@@ -53,13 +59,10 @@ import { DataTablesModule } from 'angular-datatables';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenIntercept,
-      multi: true
+      multi: true,
+      
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: FakeBackendInterceptor,
-      multi: true
-    },
+    [Globals],
     AuthService,
     ItemsService,
     ClientesService

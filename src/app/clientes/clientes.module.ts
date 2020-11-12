@@ -30,4 +30,6 @@ const routes: Routes = [
     ClienteListItemComponent,
   ]
 })
-export class ClientesModule { }
+export class ClientesModule {
+
+ }

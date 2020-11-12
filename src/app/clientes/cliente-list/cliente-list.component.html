@@ -1,25 +1,16 @@
-
-  <table class="table table-bordered table-hover" *ngIf="clientes$ | async as clientes">
+<table class="table table-striped table-bordered table-sm row-border hover" datatable>
     <thead>
-        <tr>
-            <th>#</th>
-            <th>Nombre Completo</th>
-            <th>Entidad</th>
-            <th>Estatus</th>
-            <th>Accion</th>
-        </tr>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Website</th>
+      </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let cliente of clientes">
-            <th>{{ item.id }}</th>
-            <td>{{ item.nombre }}</td>
-            <td>{{ item.tipoEntidad }}</td>
-            <td>{{ item.estatus }}</td>
-            <td>
-                <button type="button" >Delete</button>
-            </td>
-        </tr>
+     <tr *ngFor="let group of data">
+           <td>{{group.name}}</td>
+           <td>{{group.email}}</td>
+           <td>{{group.website}}</td>
+       </tr>
     </tbody>
-</table>
-
   

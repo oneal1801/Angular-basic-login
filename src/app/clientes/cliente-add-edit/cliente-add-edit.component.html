@@ -1,85 +1,117 @@
-<!-- <form  [formGroup]="clienteForm">
+<form name="clienteForm"  #clienteForm="ngForm" (ngSubmit)="clienteForm.valid && alterCliente()">
+  <div class="row">
+    <div class="col-md-12">
+     
+      <div class="row">
 
-  <div class="form-group">
-    <label for="inputNombre" [ngClass]="{'required': checkField(clienteForm.get('nombre')) }">Nombre *</label>
-    <input type="text" class="form-control" id="inputNombre" placeholder="Nombre" formControlName="title"  [ngClass]="{'required': checkField(clienteForm.get('nombre')) }">
+        <div class="col-md-3">
+          
+          <label for="dateOfBirth" class="control-label">Fecha de Nacimiento</label> 
+          <input type="text"
+           placeholder="Datepicker"
+           class="form-control"
+           bsDatepicker>
+          
+        </div>
+
+        <div class="col-md-3">
+          <label for="tipoIdentidad" class="control-label">Tipo de Identidad</label>
+          <div class="input-group">
+            <select class="form-control"
+              #mySelect>
+              <option class='option' 
+              *ngFor='let dir of clienteTypesIdentity' 
+              [value]="dir.Id">{{dir.descripcion}}</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="col-md-3">
+          <label for="identidad" class="control-label">Identidad</label> 
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fa fa-address-card"></i>
+              </div>
+            </div> 
+            <input class="form-control" placeholder="Identidad" [(ngModel)]="Cliente.Identidad" appInputValidator="Letters"
+                name="Identidad" required #Identidad="ngModel">
+            
+          </div> 
+          
+        </div>
+
+        <div class="col-md-3">
+          <label for="tipoEntidad" class="control-label">Tipo de entidad</label>
+          <div class="input-group">
+            <select class="form-control"
+              #mySelect>
+              <option class='option' 
+              *ngFor='let dir of typesentity' 
+              [value]="dir.Id">{{dir.descripcion}}</option>
+            </select>
+          </div>
+
+        </div>
+        
+
+        <div class="col-md-3">
+          <label for="Provincia" class="control-label">Provincia</label>
+          <div class="input-group">
+            <select class="form-control"
+              #mySelect2>
+              <option class='option' 
+              *ngFor='let dir of provincias' 
+              [value]="dir.provinciaId">{{dir.provincia}}</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="col-md-3">
+          <label for="Municipios" class="control-label">Municipios</label>
+          <div class="input-group">
+            <select class="form-control"
+              #mySelect3>
+              <option class='option' 
+              *ngFor='let dir of municipios' 
+              [value]="dir.MunicipioId">{{dir.Municipio}}</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="col-md-3">
+          <label for="Municipios" class="control-label">Sectores</label>
+          <div class="input-group">
+            <select class="form-control"
+              #mySelect4>
+              <option class='option' 
+              *ngFor='let dir of sectores' 
+              [value]="dir.SectorId">{{dir.Sector}}</option>
+            </select>
+          </div>
+
+        </div>
+      
+        
+       
+       
+
+      </div>
+      <br>
+      <hr>
+      <div class="row">
+        <div class="col-md-12">
+          <button name="submit" type="submit" class="btn btn-primary" [disabled]="!clienteForm.valid || processing">
+            <span *ngIf="processing" class="spinner-border spinner-border-sm mr-1"></span>              
+            Guardar
+          </button>
+
+   
+        </div>
+      </div>
+      
+    </div>
   </div>
-
-  <div class="form-group">
-    <label for="inputEntidad" [ngClass]="{'required': checkField(clienteForm.get('tipo_IdEntidad')) }">Entidad *</label>
-    <input type="text" class="form-control" id="inputEntidad" placeholder="Entidad" formControlName="title"  [ngClass]="{'required': checkField(clienteForm.get('tipo_IdEntidad')) }">
-  </div>
-
  
 
-  <div class="form-group">
-      <label for="inputFechaNacimiento">Fecha Nacimiento</label>
-      <input type="text" class="form-control" id="inputFechaNacimiento" placeholder="Fecha Nacimiento" formControlName="fechaNacimiento" [ngClass]="{'required': checkField(clienteForm.get('fechaNacimiento')) }">
-  </div>
-  <div class="form-group">
-    <label for="inputfechaIngreso">Fecha Ingreso</label>
-    <input type="text" class="form-control" id="inputfechaIngreso" placeholder="Fecha Nacimiento" formControlName="fechaIngreso" [ngClass]="{'required': checkField(clienteForm.get('fechaIngreso')) }">
-  </div>
-  <div class="form-group">
-    <label for="inputDescription">Estatus</label>
-    <input type="text" class="form-control" id="inputFechaNacimiento" placeholder="Fecha Nacimiento" formControlName="fechaNacimiento" [ngClass]="{'required': checkField(clienteForm.get('fechaNacimiento')) }">
-  </div>
-
-
-  <p class="alert alert-warning" role="alert"  *ngIf="isProcessing">
-    <span *ngIf="isProcessing" class="spinner-border spinner-border-sm mr-1"></span> Por favor espere..
-  </p>
-
-  <button *ngIf="!isProcessing" type="button" class="btn btn-primary btn-block submitbutton" (click)="onSubmit($event)" [disabled]="!clienteForm.valid && !isProcessing">{{getButtonText()}}</button>
-</form> -->
-
-<div class="submit-form">
-  <div *ngIf="!submitted">
-    <div class="form-group">
-      <label for="name">Nombre Completo</label>
-      <input
-        type="text"
-        class="form-control"
-        id="name"
-        required
-        [(ngModel)]="cliente.nombre"
-        name="nombre"
-      />
-    </div>
-    
-
-    <div class="form-group">
-      <label for="identidad">Identidad</label>
-      <input
-        class="form-control"
-        id="identidad"
-        required
-        [(ngModel)]="cliente.identidad"
-        name="identidad"
-      />
-    </div>
-
-    <div class="form-group">
-      <label for="DDIdentity">Category Dropdown</label>
-      <!-- DropDownList -->
-      <select class="custom-select" name="DDIdentity" [(ngModel)]="ddlIdentityList" #DDIdentity="ngModel" 
-      [ngClass]="{ 'is-invalid': form.submitted && DDIdentity.invalid }" required>
-        <option value="" class="text-primary font-weight-bolder">
-          --- Select tipo de Identidad ---
-        </option>
-        <option *ngFor="let Identidad of typesIdentity" [value]="tipo_Identidad.id">
-          {{tipo_Identidad.descripcion}}
-        </option>
-      </select>
-      
-    
-    </div>
-
-    <button (click)="createProduct()" class="btn btn-success">Create</button>
-  </div>
-
-  <div *ngIf="submitted">
-    <h3>You successfully created a product!</h3>
-    <button class="btn btn-success" (click)="newProduct()">New..</button>
-  </div>
-</div>
+</form>

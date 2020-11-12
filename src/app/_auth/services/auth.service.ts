@@ -58,40 +58,45 @@ export class AuthService {
   }
 
   async logout() {
-    return this.http.get(environment['apiBaseUrl'] + '/api/auth/logout').toPromise().then(
-      () => {
-        // clear any current data
-        this.clearData();
+    // clear any current data
+    this.clearData();
 
-        // tell the rest of the application about the logout
-        this.isLoggedIn.next(false);
-        return true;
-      },
-      (err) => {
-        return false;
-      }
-    );
+    // tell the rest of the application about the logout
+    this.isLoggedIn.next(false);
+    // return this.http.get(environment['apiBaseUrl'] + '/api/auth/logout').toPromise().then(
+    //   () => {
+    //     // clear any current data
+    //     this.clearData();
+
+    //     // tell the rest of the application about the logout
+    //     this.isLoggedIn.next(false);
+    //     return true;
+    //   },
+    //   (err) => {
+    //     return false;
+    //   }
+    // );
   }
 
-  async login({ username , password }): Promise<any>  {
+  async login(credentials): Promise<any>  {
     // clear some data
     this.clearData();
 
     // create the payload data for the api request
-    const loginData  = {
-      'username' : username,
-      'password' : password
-    };
+    // const loginData  = {
+    //   'username' : username,
+    //   'password' : password
+    // };
 
-    const data  = await this.http.post(environment['apiBaseUrl'] + '/api/auth/login' , loginData).toPromise();
+    const data  = await this.http.post(environment['apiBaseUrl'] + '/Users/authenticate' , credentials).toPromise();
 
     // this part only gets executed when the promise is resolved
-    if (data['token'] && data['user']) {
+    if (data['token'] && data['username']) {
 
         this.setDataAfterLogin(data);
         this.isLoggedIn.next(true); // how do I unit test this?
 
-        return data['user'];
+        return data['username'];
     } else {
       return false;
     }
@@ -111,10 +116,11 @@ export class AuthService {
     this.token  = data['token'];
 
     // store some user data in the service
-    this.userData  = data['user'];
+    this.userData  = data['username'];
 
     // store some data in local storage (webbrowser)
     localStorage.setItem('token' , this.token);
     localStorage.setItem('usermeta' , JSON.stringify(this.userData));
   }
 }
+  
