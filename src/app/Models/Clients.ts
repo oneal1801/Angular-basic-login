@@ -5,23 +5,28 @@ export class CustomerModel {
     Identidad: string;
     FechaNacimiento: Date;
     FechaIngreso: Date;
-    Estatus: string;
     Contactos: Contactos[];
     Direcciones: Direcciones[];
+
+    constructor() {
+       this.Contactos = [];
+       this.Direcciones = [];
+    }
 }
 
 export class Contactos{
-    Id: number;
+    Id: number = 0;
+    Index:number;
     IdCliente: number;
     TipoContacto: number;
     TipoEntidad: number;
     Descripcion: string;
-    Estatus: string;
 }
 
 export class Direcciones { 
 
     Id: number;
+    Index:number;
     IdCliente: number;
     Calle: string;
     Numero: string;
@@ -32,6 +37,5 @@ export class Direcciones {
     Provincia: string;
     Municipio: string;
     Comentario: string;
-    Estatus: string;
 
 }

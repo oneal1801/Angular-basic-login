@@ -8,7 +8,6 @@ import { APP_BASE_HREF } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { UiModule } from './_shared/ui/ui.module';
-import { FakeBackendInterceptor } from './_shared/fakebackend';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './_auth/guards/auth.guard';
 import { TokenIntercept } from './_auth/tokenintercept';
@@ -26,9 +25,8 @@ import {ClientesService } from './clientes/_service/clientes.service';
 import { AuthService } from './_auth/services/auth.service';
 import { ContentHeaderComponent } from './ContentHeader/ContentHeader.component';
 import { DataTablesModule } from 'angular-datatables';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Globals } from './Globals';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -37,7 +35,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     LoginComponent,
     DashboardComponent,
     LogoutComponent,
-      ContentHeaderComponent
+    ContentHeaderComponent
    ],
   imports: [
     BrowserModule,
@@ -50,7 +48,6 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     ItemsModule,
     ClientesModule,
     DataTablesModule,
-    BsDatepickerModule.forRoot(),
     BrowserAnimationsModule,
   ],
   providers: [
@@ -67,6 +64,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     ItemsService,
     ClientesService
   ],
-  bootstrap: [AppComponent]
+
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

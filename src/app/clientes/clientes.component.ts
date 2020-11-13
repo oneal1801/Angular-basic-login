@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ClientesService } from './_service/clientes.service';
+
 
 @Component({
   selector: 'app-clientes',
@@ -12,11 +12,13 @@ export class ClientesComponent implements OnInit {
 
  
   
-  constructor(private clientesService: ClientesService) { }
+  constructor(private clientesService: ClientesService, ) { }
 
   ngOnInit() {
     
   }
+
+  
 
 
   

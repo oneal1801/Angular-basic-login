@@ -37,7 +37,7 @@ export class ClienteListComponent implements OnInit {
       debugger;
       this.Clientes = data.Object;
       console.log("listado de clientes");
-      console.log(this.Clientes.length);
+      //console.log(this.Clientes.length);
       this.OriginalList = data.Object;
     }, error => {
       console.log("Error cargando los clientes");

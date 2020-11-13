@@ -30,13 +30,13 @@ export class ClientesService {
     return this.http.get(url_api);
   }
 
-  GetMunicipios(){
-    const url_api = this.globals.urlApi + `api/codes/municipios`;
+  GetMunicipios(provinciaId: number){
+    const url_api = this.globals.urlApi + `api/codes/municipios?ProvinciaId=`+provinciaId;
     return this.http.get(url_api);
   }
 
-  GetSectores(){
-    const url_api = this.globals.urlApi + `api/codes/sectores`;
+  GetSectores(municipioId: number){
+    const url_api = this.globals.urlApi + `api/codes/sectores?MunicipioId=`+municipioId;
     return this.http.get(url_api);
   }
 

@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { CustomerModel } from 'src/app/Models/Clients';
+import { ChangeDetectorRef, Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Contactos, CustomerModel, Direcciones } from 'src/app/Models/Clients';
 import { CheckRequiredField } from 'src/app/_shared/helpers/form.helper';
 import Swal from 'sweetalert2';
 
@@ -17,31 +16,78 @@ export class ClienteAddEditComponent implements OnInit {
   datepickerModel: Date;
   
 
-  constructor(private clientesService: ClientesService, private formBuilder: FormBuilder, private http:HttpClient ) 
+  constructor
+  (private clientesService: ClientesService, 
+    private modalService: BsModalService, 
+    private changeDetection: ChangeDetectorRef,
+    
+    ) 
   { 
     
   }
   public data;
   public submitted = false;
   public Cliente;
+  public direcciones: Direcciones ;
+  public bsModalRef: BsModalRef
+  public itemList = [];
   public processing: Boolean = false;
   public Editing: boolean;
-  public selectTypesIdentity = new FormControl('', [Validators.required]);
-  public selectedProvincia = new FormControl
   public clienteTypesIdentity;
-  public typesentity;
-  public provincias;
-  public municipios;
-  public sectores;
+  modalRef: BsModalRef;
+  
 
   ngOnInit() {
     this.Cliente = new CustomerModel();
-   
-    this.getTypesIdentity();
-    this.getProvincias();
-    this.getTypesEntity();
+    this.direcciones = new Direcciones();
     
+    this.getTypesIdentity();
 
+  }
+
+  openModal(template: TemplateRef<any>) {
+    
+    this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
+    this.bsModalRef.content.event.subscribe(res => {
+      this.itemList.push(res.data);
+      console.log(this.itemList)
+    });
+    
+  }
+
+  // openModalContactos(index: any){ 
+    // let contactos = this.Cliente.Contactos.find(f=> f.Index == index);
+    // const dialoRef = this.contactoModal.open(ClienteContactosComponent, {
+    //   height: "auto",
+    //   width: 'auto',
+    //   maxWidth: '500px',
+    //   maxHeight: '650px',
+    //   data: {contactos:1}​​,
+    //   disableClose: false
+    // });
+    // dialoRef.afterClosed().subscribe(result => {
+    //   if (result) {
+    //     if (result.Editing){
+    //        this.Cliente.Contactos.forEach(element => {
+    //        if(element.Index == index){
+    //          element.Id = result.Contact.Id;
+    //          element.Descripcion = result.Contact.Descripcion;
+    //          element.TipoContacto = result.Contact.TipoContacto;
+    //          element.TipoEntidad = result.Contact.TipoEntidad;
+    //        }
+    //      });
+    //     }else{
+    //       this.Cliente.Contactos.push(result.Contact);
+    //     }
+        
+    //   }
+    // });
+  // }
+
+  
+ 
+  agregarDireccion(): void {
+    this.modalRef.hide();
   }
 
 
@@ -73,45 +119,7 @@ export class ClienteAddEditComponent implements OnInit {
     });
   }
 
-  getTypesEntity() {
-    this.clientesService.GetTypesEntity().subscribe((data: any) => {
-      console.log(data);
-      this.typesentity = data;
-    }, error => {
-      console.log(error.error);
-
-    });
-  }
-
-  getProvincias() {
-    this.clientesService.GetProvincias().subscribe((data: any) => {
-      console.log(data);
-      this.provincias= data;
-    }, error => {
-      console.log(error.error);
-
-    });
-  }
-
-  getMunicipios() {
-    this.clientesService.GetMunicipios().subscribe((data: any) => {
-      console.log(data);
-      this.municipios = data;
-    }, error => {
-      console.log(error.error);
-
-    });
-  }
-
-  getSectores() {
-    this.clientesService.GetSectores().subscribe((data: any) => {
-      console.log(data);
-      this.sectores = data;
-    }, error => {
-      console.log(error.error);
-
-    });
-  }
+ 
 
   
 

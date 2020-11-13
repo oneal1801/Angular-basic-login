@@ -6,14 +6,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 
-import { ClienteEditComponent } from './cliente-edit/cliente-edit.component';
 import { ClienteAddEditComponent } from './cliente-add-edit/cliente-add-edit.component';
 import { ClienteListComponent } from './cliente-list/cliente-list.component';
 import { ClienteListItemComponent } from './cliente-list-item/cliente-list-item.component';
+import { ClienteDireccionesComponent } from './cliente-direcciones/cliente-direcciones.component';
+import { ClienteContactosComponent } from './cliente-contactos/cliente-contactos.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 const routes: Routes = [
-  { path: 'clientes', component: ClientesComponent , canActivate: [AuthGuard] },
-  { path: 'cliente-edit/:id', component: ClienteEditComponent , canActivate: [AuthGuard] }
+  { path: 'clientes', component: ClientesComponent , canActivate: [AuthGuard] }
 ];
 
 @NgModule({
@@ -21,14 +24,21 @@ const routes: Routes = [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ModalModule.forRoot(),
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),
   ],
   declarations: [
     ClientesComponent,
     ClienteAddEditComponent,
     ClienteListComponent,
     ClienteListItemComponent,
-  ]
+    ClienteDireccionesComponent,
+    ClienteContactosComponent,
+    
+  ],
+  entryComponents: [ClienteContactosComponent],
 })
 export class ClientesModule {
 

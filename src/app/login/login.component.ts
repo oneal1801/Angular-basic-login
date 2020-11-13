@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   processing: Boolean = false;
   error: Boolean = false;
+  mensajeError: string;
 
   checkField  = CheckRequiredField;
 
@@ -67,12 +68,13 @@ export class LoginComponent implements OnInit {
   private handleLoginSuccess() {
     this.processing = false;
     this.error  = false;
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/clientes']);
   }
 
   private handleLoginError() {
     this.processing = false;
     this.error  = true;
+    this.mensajeError = "Verifique sus credenciales."
   }
 
   private initForm() {

@@ -1,0 +1,50 @@
+<form [formGroup]="contactoform" (ngSubmit)="saveToList(contactoform)">
+  <div class="row">
+    <div class="col-md-4">
+      <label for="tipoEntidad" class="control-label">Tipo de entidad</label>
+      <div class="input-group">
+        <select class="form-control"
+          [(ngModel)]="contactos.TipoEntidad"
+          formControlName="TipoEntidad"
+          #mySelect>
+          <option class='option' 
+          *ngFor='let dir of typesentity' 
+          value="dir.Id">{{dir.descripcion}}</option>
+        </select>
+      </div>
+
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="TipoContacto">Tipo de Contacto</label> 
+        <div>
+          <select id="TipoContacto" name="TipoContacto" required="required" formControlName="TipoContacto" class="custom-select" [(ngModel)]="contactos.TipoContacto">
+            <option value="1">Telefono Casa</option>
+            <option value="2">Telefono Celular</option>
+            <option value="3">Telefono Oficina</option>
+            <option value="4">Correo Electrónico</option>
+            <option value="5">Otros</option>
+          </select>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="descripcion">Descripción</label> 
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fa fa-address-book"></i>
+            </div>
+          </div> 
+          <input id="descripcion" formControlName="Descripcion" name="descripcion" placeholder="Descripción de contacto" type="text" class="form-control" required="required" [(ngModel)]="contactos.Descripcion">
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <button type="submit" class="btn btn-info float-left" > <i class="fas fa-plus"></i> Agregar</button>
+  </div>
+</form>
