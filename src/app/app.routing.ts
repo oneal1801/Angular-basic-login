@@ -15,7 +15,7 @@ const routes: Routes = [
 
     { path: 'dashboard', component: DashboardComponent , canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
-    { path: 'logout', component: LogoutComponent },
+    // { path: 'logout', component: LogoutComponent },
     { path: '**', redirectTo: '/dashboard', pathMatch: 'full' },
     { path: '',  redirectTo: '/dashboard', pathMatch: 'full' }, // catch all route
 

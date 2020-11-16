@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ClientesService } from '../_service/clientes.service';
 
 @Component({
@@ -13,6 +13,8 @@ export class ClienteDireccionesComponent implements OnInit {
   public municipios;
   public municipioId: number = 0;
   public sectores;
+
+  @Output() getListaDirecciones: EventEmitter<any> = new EventEmitter();
 
   constructor(private clientesService: ClientesService) { }
 
@@ -46,5 +48,9 @@ export class ClienteDireccionesComponent implements OnInit {
       this.sectores = data;
     });  
   }
+
+  RetornarDirecciones(items){
+    this.getListaDirecciones.emit(items); 
+   }
 
 }

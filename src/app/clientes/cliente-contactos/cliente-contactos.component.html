@@ -1,15 +1,18 @@
-<form [formGroup]="contactoform" (ngSubmit)="saveToList(contactoform)">
+<form #f="ngForm" (ngSubmit)="RetornarContactos(f.value)" novalidate>
   <div class="row">
+    <!-- <div class="col-md-12 mb-2">
+      <button name="agregarContacto" type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
+    </div> -->
     <div class="col-md-4">
       <label for="tipoEntidad" class="control-label">Tipo de entidad</label>
       <div class="input-group">
         <select class="form-control"
-          [(ngModel)]="contactos.TipoEntidad"
-          formControlName="TipoEntidad"
-          #mySelect>
-          <option class='option' 
+          name="TipoEntidad"
+          ngModel
+          #TipoEntidad="ngModel">
+          <option class='option' selected
           *ngFor='let dir of typesentity' 
-          value="dir.Id">{{dir.descripcion}}</option>
+          [value]="dir.id">{{dir.descripcion}}</option>
         </select>
       </div>
 
@@ -18,7 +21,7 @@
       <div class="form-group">
         <label for="TipoContacto">Tipo de Contacto</label> 
         <div>
-          <select id="TipoContacto" name="TipoContacto" required="required" formControlName="TipoContacto" class="custom-select" [(ngModel)]="contactos.TipoContacto">
+          <select id="TipoContacto" name="TipoContacto" required="required" class="custom-select" ngModel #TipoContacto="ngModel">
             <option value="1">Telefono Casa</option>
             <option value="2">Telefono Celular</option>
             <option value="3">Telefono Oficina</option>
@@ -38,13 +41,13 @@
               <i class="fa fa-address-book"></i>
             </div>
           </div> 
-          <input id="descripcion" formControlName="Descripcion" name="descripcion" placeholder="Descripción de contacto" type="text" class="form-control" required="required" [(ngModel)]="contactos.Descripcion">
+          <input id="descripcion" name="Descripcion" placeholder="Descripción de contacto" type="text" class="form-control" required="required" ngModel #Descripcion="ngModel">
         </div>
       </div>
     </div>
   </div>
   <hr>
   <div class="row">
-    <button type="submit" class="btn btn-info float-left" > <i class="fas fa-plus"></i> Agregar</button>
+    <button type="submit" class="btn btn-info float-right" > <i class="fas fa-plus"></i> Agregar</button>
   </div>
 </form>

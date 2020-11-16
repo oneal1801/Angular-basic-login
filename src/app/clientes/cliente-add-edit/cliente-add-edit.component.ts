@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Contactos, CustomerModel, Direcciones } from 'src/app/Models/Clients';
 import { CheckRequiredField } from 'src/app/_shared/helpers/form.helper';
@@ -13,14 +13,12 @@ import { ClientesService } from '../_service/clientes.service';
 })
 export class ClienteAddEditComponent implements OnInit {
 
-  datepickerModel: Date;
+
   
 
   constructor
   (private clientesService: ClientesService, 
     private modalService: BsModalService, 
-    private changeDetection: ChangeDetectorRef,
-    
     ) 
   { 
     
@@ -28,9 +26,9 @@ export class ClienteAddEditComponent implements OnInit {
   public data;
   public submitted = false;
   public Cliente;
-  public direcciones: Direcciones ;
-  public bsModalRef: BsModalRef
-  public itemList = [];
+  // public direcciones: Direcciones ;
+  public listadoDirecciones = [];
+  public listacontactos = [];
   public processing: Boolean = false;
   public Editing: boolean;
   public clienteTypesIdentity;
@@ -39,19 +37,13 @@ export class ClienteAddEditComponent implements OnInit {
 
   ngOnInit() {
     this.Cliente = new CustomerModel();
-    this.direcciones = new Direcciones();
     
     this.getTypesIdentity();
 
   }
 
   openModal(template: TemplateRef<any>) {
-    
     this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
-    this.bsModalRef.content.event.subscribe(res => {
-      this.itemList.push(res.data);
-      console.log(this.itemList)
-    });
     
   }
 
@@ -119,6 +111,23 @@ export class ClienteAddEditComponent implements OnInit {
     });
   }
 
+  getDatosContactos(item){
+    console.log("Este es el item que viene del hijo");
+    console.log(item);
+    this.listacontactos.push(item);
+    console.log("Esta es la lista de items");
+    console.log(this.listacontactos);
+    
+}
+
+getDatosDirecciones(item){
+  console.log("Este es el item de direcciones que viene del hijo");
+  console.log(item);
+  this.listadoDirecciones.push(item);
+  console.log("Esta es la lista de direcciones");
+  console.log(this.listadoDirecciones);
+  
+}
  
 
   

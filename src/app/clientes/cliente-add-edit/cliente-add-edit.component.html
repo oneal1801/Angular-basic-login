@@ -81,15 +81,15 @@
                 <tr>
                   <th>Tipo de Entidad</th>
                   <th>Tipo de Contacto</th>
-                  <th>Tipo de Descripcion</th>
+                  <th>Descripcion</th>
                   <th >Acciones</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Cliente</td>
-                  <td>Celular</td>
-                  <td> 829-250-3080</td>
+                <tr *ngFor="let c of listacontactos">
+                  <td>{{c?.TipoEntidad}}</td>
+                  <td>{{c?.TipoContacto}}</td>
+                  <td>{{c?.Descripcion}}</td>
                   <td>
                     <button type="button" class="btn btn-sm btn-warning">
                       <i class="fas fa-pencil-alt"></i>
@@ -136,16 +136,16 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Casa</td>
-                  <td>C/Central</td>
-                  <td>38</td>
-                  <td>N\A</td>
-                  <td>N\A</td>
-                  <td>Hainamosa</td>
-                  <td>Santo Domingo Este</td>
-                  <td>Santo Domingo</td>
-                  <td>Republica Dominicana</td>
+                <tr *ngFor="let d of listadoDirecciones">
+                  <td>{{d?.Comentario}}</td>
+                  <td>{{d?.calle}}</td>
+                  <td>{{d?.Numero}}</td>
+                  <td>{{d?.Edificio}}</td>
+                  <td>{{d?.Apto}}</td>
+                  <td>{{d?.Sector}}</td>
+                  <td>{{d?.Municipio}}</td>
+                  <td>{{d?.Provincias}}</td>
+                  <td>{{d?.Pais}}</td>
                   <td class="d-flex justify-content-center">
                     <button type="button" class="btn btn-sm btn-warning">
                       <i class="fas fa-pencil-alt"></i>
@@ -156,26 +156,7 @@
                     </button>                   
                   </td>
                 </tr>
-                <tr>
-                  <td>Trabajo</td>
-                  <td>C/Central</td>
-                  <td>38</td>
-                  <td>N\A</td>
-                  <td>N\A</td>
-                  <td>Hainamosa</td>
-                  <td>Santo Domingo Este</td>
-                  <td>Santo Domingo</td>
-                  <td>Republica Dominicana</td>
-                  <td class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-sm btn-warning">
-                      <i class="fas fa-pencil-alt"></i>
-                    </button> 
-                    &nbsp;
-                    <button type="button" class="btn btn-sm btn-danger">
-                      <i class="fas fa-trash"></i>
-                    </button>    
-                  </td>
-                </tr>
+                
                 
               </tbody>
             </table>
@@ -214,7 +195,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <app-cliente-contactos>
+    <app-cliente-contactos (getListContactos)="getDatosContactos($event)">
       cargando formulario de contactos
     </app-cliente-contactos>
   </div>
@@ -229,7 +210,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <app-cliente-direcciones>
+    <app-cliente-direcciones (getListaDirecciones)="getDatosDirecciones($event)">
       Cargando formulario de direcciones
     </app-cliente-direcciones>
   </div>

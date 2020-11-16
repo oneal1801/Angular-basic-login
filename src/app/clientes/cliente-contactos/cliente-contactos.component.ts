@@ -1,8 +1,7 @@
-import { Component, OnInit, Inject, EventEmitter } from '@angular/core';
+import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
 import { ClientesService } from '../_service/clientes.service';
 import { Contactos } from 'src/app/Models/Clients';
-import { FormBuilder } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+
 
 @Component({
   selector: 'app-cliente-contactos',
@@ -15,11 +14,14 @@ export class ClienteContactosComponent implements OnInit {
   public typesentity;
   public contactos : Contactos;
   contactoform;
-  modalRef: BsModalRef;
   list: any[] = [];
-  public event: EventEmitter<any> = new EventEmitter();
-  constructor(private formBuilder: FormBuilder, private clientesService: ClientesService,) {
-   
+
+  @Output() getListContactos: EventEmitter<any> = new EventEmitter();
+
+  constructor(private clientesService: ClientesService,
+     ) 
+  { 
+
   }
 
   
@@ -27,12 +29,6 @@ export class ClienteContactosComponent implements OnInit {
   ngOnInit() {
     this.contactos = new Contactos();
     this.getTypesEntity();
-    this.contactoform = this.formBuilder.group({
-    
-      TipoContacto: 0,
-      TipoEntidad: 0,
-      Descripcion: ""
-    })
     //Cuando se esta editando y no esta guardado en la BD
     // if (this.data.contatos) {
     //   this.contactos = this.data.Contactos;
@@ -57,15 +53,12 @@ export class ClienteContactosComponent implements OnInit {
     });
   }
 
-  saveToList(form) {
-    this.triggerEvent({form});
-    //this.modalRef.hide();
-
-  }
-
-  triggerEvent(items:any ) {
-    this.event.emit({ data: items , res:200 });
-  }
+  RetornarContactos(items){
+    this.getListContactos.emit(items);  
+    
+    
+   }
+  
 
 
 

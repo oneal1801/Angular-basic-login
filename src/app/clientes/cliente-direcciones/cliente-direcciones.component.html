@@ -1,131 +1,134 @@
-<div class="row">
-  <!-- <div class="col-md-12 mb-2">
-    <button name="agregarContacto" type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
-  </div> -->
-  <div class="col-md-12">
-    
-    <div class="row">
-      <div class="col-md-3">
-        <div class="form-group">
-          <label for="Pais">Pais</label> 
-          <div>
-            <select id="Pais" name="Pais" class="custom-select" required="required">
-              <option value="Republica Dominicana">Republica Dominicana</option>
+<form #d="ngForm" (ngSubmit)="RetornarDirecciones(d.value)" novalidate>
+  <div class="row">
+    <!-- <div class="col-md-12 mb-2">
+      <button name="agregarContacto" type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
+    </div> -->
+    <div class="col-md-12">
+      
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="Pais">Pais</label> 
+            <div>
+              <select id="Pais" name="Pais" class="custom-select" ngModel #Pais="ngModel" required="required">
+                <option class="option" selected value="Republica Dominicana">Republica Dominicana</option>
+              </select>
+            </div>
+          </div> 
+        </div>
+        <div class="col-md-3">
+          <label for="Provincia" class="control-label">Provincia</label>
+          <div class="input-group">
+            <select class="form-control" name="Provincias"
+            (change)="FillMunicipiosDDL($event);"
+              ngModel #Provincias="ngModel">
+              <option class="option" selected disabled value="">--Seleccione una provincia--</option>
+              <option class='option' 
+              *ngFor='let dir of provincias' 
+              [value]="dir.provinciaId">{{dir.provincia}}</option>
             </select>
           </div>
-        </div> 
-      </div>
-      <div class="col-md-3">
-        <label for="Provincia" class="control-label">Provincia</label>
-        <div class="input-group">
-          <select class="form-control"
-          (change)="FillMunicipiosDDL($event);"
-            #mySelect2>
-            <option class="option" selected disabled value="">--Seleccione una provincia--</option>
-            <option class='option' 
-            *ngFor='let dir of provincias' 
-            [value]="dir.provinciaId">{{dir.provincia}}</option>
-          </select>
-        </div>
 
-      </div>
-      <div class="col-md-3">
-        <label for="Municipio" class="control-label">Municipios</label>
-        <div class="input-group">
-          <select class="form-control"
-          (change)="FillSectoresDDL($event);"
-            #mySelect3>
-            <option class="option" selected disabled value="">--Seleccione un Municipio--</option>
-            <option class='option' 
-            *ngFor='let dir of municipios' 
-            [value]="dir.municipioId">{{dir.municipio}}</option>
-          </select>
         </div>
+        <div class="col-md-3">
+          <label for="Municipio" class="control-label">Municipios</label>
+          <div class="input-group">
+            <select class="form-control"
+            name="Municipio"
+            (change)="FillSectoresDDL($event);"
+            ngModel #Municipio="ngModel">
+              <option class="option" selected disabled value="">--Seleccione un Municipio--</option>
+              <option class='option' 
+              *ngFor='let dir of municipios' 
+              [value]="dir.municipioId">{{dir.municipio}}</option>
+            </select>
+          </div>
 
-      </div>
-      <div class="col-md-3">
-        <label for="Municipios" class="control-label">Sectores</label>
-        <div class="input-group">
-          <select class="form-control"            
-            #mySelect4>
-            <option class="option" selected disabled value="">--Seleccione un sector--</option>
-            <option class='option' 
-            *ngFor='let dir of sectores' 
-            [value]="dir.sectorId">{{dir.sector}}</option>
-          </select>
         </div>
+        <div class="col-md-3">
+          <label for="Municipios" class="control-label">Sectores</label>
+          <div class="input-group">
+            <select class="form-control" name="Sector" 
+              ngModel #Sector="ngModel">
+              <option class="option" selected disabled value="">--Seleccione un sector--</option>
+              <option class='option' 
+              *ngFor='let dir of sectores' 
+              [value]="dir.sectorId">{{dir.sector}}</option>
+            </select>
+          </div>
 
+        </div>
+        
+      </div>
+      <div class="form-group">
+        <label for="calle">Calle</label> 
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fa fa-building"></i>
+            </div>
+          </div> 
+          <input id="calle" name="calle" ngModel #calle="ngModel" placeholder="Calle" type="text" required="required" class="form-control">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="numero">Numero</label> 
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fa fa-building"></i>
+                </div>
+              </div> 
+              <input id="numero" name="numero" ngModel #numero="ngModel" placeholder="Numero" type="number" required="required" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="Edificio">Edificio</label> 
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fa fa-building"></i>
+                </div>
+              </div> 
+              <input id="Edificio" name="Edificio" ngModel #Edificio="ngModel" placeholder="Edificio" type="text" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="Apto">Apto</label> 
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fa fa-building"></i>
+                </div>
+              </div> 
+              <input id="Apto" name="Apto" ngModel #Apto="ngModel" placeholder="Apto" type="text" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="Comentario">Comentario</label> 
+            <div>
+            <select id="Comentario" name="Comentario" ngModel #Comentario="ngModel" class="custom-select" required="required">
+                <option value="Casa">Casa</option>
+                <option value="Trabajo">Trabajo</option>
+                <option value="Otros">Otros</option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
       
     </div>
-    <div class="form-group">
-      <label for="calle">Calle</label> 
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <i class="fa fa-building"></i>
-          </div>
-        </div> 
-        <input id="calle" name="calle" placeholder="Calle" type="text" required="required" class="form-control">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3">
-        <div class="form-group">
-          <label for="numero">Numero</label> 
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <i class="fa fa-building"></i>
-              </div>
-            </div> 
-            <input id="numero" name="numero" placeholder="Numero" type="number" required="required" class="form-control">
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="form-group">
-          <label for="Edificio">Edificio</label> 
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <i class="fa fa-building"></i>
-              </div>
-            </div> 
-            <input id="Edificio" name="Edificio" placeholder="Edificio" type="text" class="form-control">
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="form-group">
-          <label for="Apto">Apto</label> 
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <i class="fa fa-building"></i>
-              </div>
-            </div> 
-            <input id="Apto" name="Apto" placeholder="Apto" type="text" class="form-control">
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="form-group">
-          <label for="Comentario">Comentario</label> 
-          <div>
-            <select id="Comentario" name="Comentario" class="custom-select" required="required">
-              <option value="Casa">Casa</option>
-              <option value="Trabajo">Trabajo</option>
-              <option value="Otros">Otros</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-    
   </div>
-</div>
-<hr>
-<div class="row">
-  <button type="button" class="btn btn-info float-right" > <i class="fas fa-plus"></i> Agregar</button>
-</div>
+  <hr>
+  <div class="row">
+    <button type="submit" class="btn btn-info float-right" > <i class="fas fa-plus"></i> Agregar</button>
+  </div>
+</form>
