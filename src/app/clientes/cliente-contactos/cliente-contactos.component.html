@@ -9,8 +9,8 @@
         <select class="form-control"
           name="TipoEntidad"
           ngModel
-          #TipoEntidad="ngModel">
-          <option class='option' selected
+          #TipoEntidad="ngModel" [value]="1">
+          <option class='option' 
           *ngFor='let dir of typesentity' 
           [value]="dir.id">{{dir.descripcion}}</option>
         </select>
@@ -21,7 +21,7 @@
       <div class="form-group">
         <label for="TipoContacto">Tipo de Contacto</label> 
         <div>
-          <select id="TipoContacto" name="TipoContacto" required="required" class="custom-select" ngModel #TipoContacto="ngModel">
+          <select id="TipoContacto" [value]="1" name="TipoContacto" required="required" class="custom-select" ngModel #TipoContacto="ngModel">
             <option value="1">Telefono Casa</option>
             <option value="2">Telefono Celular</option>
             <option value="3">Telefono Oficina</option>

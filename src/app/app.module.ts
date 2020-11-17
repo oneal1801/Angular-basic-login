@@ -27,15 +27,17 @@ import { ContentHeaderComponent } from './ContentHeader/ContentHeader.component'
 import { DataTablesModule } from 'angular-datatables';
 import { Globals } from './Globals';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ClientesListaComponent } from './clientes-lista/clientes-lista.component';
 
 
 @NgModule({
-  declarations: [	
+  declarations: [		
     AppComponent,
     LoginComponent,
     DashboardComponent,
     LogoutComponent,
-    ContentHeaderComponent
+    ContentHeaderComponent,
+      ClientesListaComponent
    ],
   imports: [
     BrowserModule,

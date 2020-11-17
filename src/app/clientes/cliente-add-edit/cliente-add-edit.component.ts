@@ -134,6 +134,12 @@ getDatosDirecciones(item){
 
   createCliente() {
     this.processing = true;
+    this.Cliente.Direcciones = this.listadoDirecciones;
+    this.Cliente.Contactos = this.listacontactos;
+
+    console.log(this.Cliente);
+     
+
     this.clientesService.postCliente(this.Cliente).subscribe((data: any) => {
       this.submitted = false;
       Swal.fire({
